@@ -51,7 +51,7 @@ xf = np.linspace(0, RATE, CHUNK)     # frequencies (spectrum)
 line, = ax1.plot(x, np.random.rand(CHUNK), '-', lw=2)
 
 # log plot for the audio spectrum
-# semilog dice di mettere log solo all'asse x che sono le frequenze
+# semilogx dice di mettere log solo all'asse x che sono le frequenze
 # in questo modo si vedono moooolto meglio 
 line_fft, = ax2.semilogx(xf, np.random.rand(CHUNK), '-', lw=2)
 
@@ -79,6 +79,7 @@ frame_count = 0
 # faccio partire una specie di clock 
 start_time = time.time()
 
+# infinite loop for recording 
 while True:
     
     # binary data
@@ -89,7 +90,7 @@ while True:
     # calculate the volume
     rms = audioop.rms(data, 2)     
 
-    #threshold check
+    #------------- threshold check -------------#
     # se l'audio registrato ha volume maggiore del threshold
     # allora registra e plotta le cose
     if rms >= THRESHOLD:
